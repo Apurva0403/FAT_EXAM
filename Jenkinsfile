@@ -42,7 +42,7 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 echo '========== STAGE: Push to Docker Hub =========='
-                withCredentials([usernamePassword(credentialsId: 'docker-hub-password', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
+                withCredentials([usernamePassword(credentialsId: 'docker-pass', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     bat '''
                         echo %DOCKER_PASS% | docker login -u %DOCKER_USER% --password-stdin
                         docker push apurva0409/matrix-multiplication:%BUILD_NUMBER%
